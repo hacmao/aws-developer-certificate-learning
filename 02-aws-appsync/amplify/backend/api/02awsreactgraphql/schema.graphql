@@ -1,0 +1,35 @@
+type Course @model 
+  @key(name: "byTeacher" , fields: ["teacherId"]){
+  id: ID!
+  teacherId: ID!
+  teacher: Teacher @connection(fields: ["teacherId"])
+  name: String!
+  students: [Manager] @connection(keyName: "byCourse", fields: ["id"])
+  title: String
+  description: String
+}
+
+type Manager 
+  @model(queries: null)
+  @key(name: "byCourse", fields: ["courseId", "studentId"])
+  @key(name: "byStudent", fields: ["studentId", "courseId"]) {
+  id: ID!
+  courseId: ID!
+  studentId: ID!
+  course: Course! @connection(fields: ["courseId"])
+  student: Student! @connection(fields: ["studentId"])
+}
+
+type Student @model {
+  id: ID!
+  name: String!
+  age: Int
+  courses: [Manager] @connection(keyName: "byStudent", fields: ["id"])
+}
+
+type Teacher @model {
+  id: ID!
+  name: String!
+  age: Int
+  courses: [Course] @connection(keyName: "byTeacher", fields: ["id"])
+}

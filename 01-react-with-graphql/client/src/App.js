@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './Component/Nav';
 import Home from './Component/Home';
 import Add from './Component/Add';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -24,7 +24,6 @@ const App = () => {
         <Route path='/Add' render={() => <Add client={ apolloClient } /> } />
       </ApolloProvider>
     </Router>
-    
   );
 };
 
