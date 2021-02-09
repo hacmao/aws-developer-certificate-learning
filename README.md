@@ -1,2 +1,2 @@
-# aws-with-react-learning
-Learning aws with react
+# AWS Developer Certificate
+Learning aws 
